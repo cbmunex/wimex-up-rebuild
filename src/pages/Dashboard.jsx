@@ -1,113 +1,79 @@
-// src/pages/Dashboard.jsx
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import React from "react";
+import { Auth } from "aws-amplify";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Dashboard() {
+  const { user } = useAuth();
   const navigate = useNavigate();
 
-  // Proteção simples de rota
-  useEffect(() => {
-    const isAuth = localStorage.getItem('wimex-auth') === 'ok';
-    if (!isAuth) {
-      navigate('/login');
-    }
-  }, [navigate]);
-
-  const rawUser = localStorage.getItem('wimex-user');
-  const user = rawUser ? JSON.parse(rawUser) : null;
-
-  function handleLogout() {
-    localStorage.removeItem('wimex-auth');
-    navigate('/');
+  async function logout() {
+    await Auth.signOut();
+    localStorage.removeItem("pagamento_ok");
+    navigate("/login");
   }
 
-  const modules = [
-    { id: 1, title: 'Módulo 1 - Aeroporto & Check-in', level: 'Básico', status: 'Em breve' },
-    { id: 2, title: 'Módulo 2 - Imigração & Documentos', level: 'Básico', status: 'Em breve' },
-    { id: 3, title: 'Módulo 3 - Hotel & Reservas', level: 'Intermediário', status: 'Em breve' },
-    { id: 4, title: 'Módulo 4 - Restaurantes & Pedidos', level: 'Intermediário', status: 'Em breve' },
-    { id: 5, title: 'Módulo 5 - Reuniões de Trabalho', level: 'Avançado', status: 'Em breve' },
-  ];
+  const pagou = localStorage.getItem("pagamento_ok") === "true";
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white flex flex-col">
-      <Header />
+    <div className="p-8 max-w-5xl mx-auto">
 
-      <main className="flex-1 max-w-6xl mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row justify-between gap-4 mb-6">
-          <div>
-            <h1 className="text-2xl font-semibold mb-1">
-              Olá, {user?.nome || 'Aluno'}
-            </h1>
-            <p className="text-sm text-slate-400">
-              Bem-vindo à sua área de estudos do WIMEX-UP.
-            </p>
-          </div>
-          <button
-            onClick={handleLogout}
-            className="self-start px-4 py-2 rounded-full border border-slate-700 text-xs text-slate-300 hover:border-red-400 hover:text-red-300"
+      <h1 className="text-4xl font-bold mb-4 text-blue-600">
+        Painel do Aluno
+      </h1>
+
+      <p className="text-lg mb-6">
+        Bem-vindo, <span className="font-semibold">{user?.attributes?.email}</span>!
+      </p>
+
+      {/* STATUS DO PAGAMENTO */}
+      {!pagou ? (
+        <div className="bg-yellow-200 text-yellow-800 p-4 rounded-xl mb-8">
+          <p className="font-semibold">⚠ Matrícula pendente</p>
+          <p className="text-sm">Finalize o pagamento para acessar o curso completo.</p>
+          <Link
+            to="/pagamento"
+            className="inline-block mt-3 bg-yellow-600 hover:bg-yellow-500 text-white px-4 py-2 rounded-lg"
           >
-            Sair
-          </button>
+            Ir para pagamento
+          </Link>
+        </div>
+      ) : (
+        <div className="bg-green-200 text-green-800 p-4 rounded-xl mb-8">
+          <p className="font-semibold">✔ Matrícula ativa</p>
+          <p className="text-sm">Você já tem acesso aos módulos do curso!</p>
+        </div>
+      )}
+
+      {/* CARDS DO PAINEL */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div className="bg-white p-6 shadow rounded-xl">
+          <h2 className="text-xl font-semibold mb-2">📘 Seus Módulos</h2>
+          {pagou ? (
+            <p className="text-gray-600">Conteúdos desbloqueados.</p>
+          ) : (
+            <p className="text-gray-400">Bloqueado até pagamento.</p>
+          )}
         </div>
 
-        <div className="grid md:grid-cols-[2fr,1fr] gap-6">
-          {/* Lista de módulos */}
-          <section className="bg-slate-900/70 border border-slate-800 rounded-2xl p-4">
-            <h2 className="text-lg font-semibold mb-3">Seus módulos</h2>
-            <ul className="space-y-3 text-sm">
-              {modules.map((m) => (
-                <li
-                  key={m.id}
-                  className="flex items-center justify-between bg-slate-950/60 border border-slate-800 rounded-xl px-3 py-2"
-                >
-                  <div>
-                    <p className="font-medium">{m.title}</p>
-                    <p className="text-xs text-slate-400">Nível: {m.level}</p>
-                  </div>
-                  <span className="text-[11px] rounded-full px-2 py-1 bg-slate-800 text-slate-300">
-                    {m.status}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          {/* Painel lateral */}
-          <aside className="space-y-4">
-            <div className="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 text-sm">
-              <h3 className="font-semibold mb-2">Seu progresso</h3>
-              <p className="text-slate-400 text-xs mb-3">
-                Em breve você verá aqui seu progresso, tempo de estudo e módulos concluídos.
-              </p>
-              <div className="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
-                <div className="h-full w-1/5 bg-emerald-500" />
-              </div>
-              <p className="text-[11px] text-slate-500 mt-1">Progresso inicial (demo)</p>
-            </div>
-
-            <div className="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 text-sm">
-              <h3 className="font-semibold mb-2">Seu avatar</h3>
-              <p className="text-slate-400 text-xs mb-2">
-                Em futuras versões, aqui você poderá configurar o avatar que vai te acompanhar nas aulas.
-              </p>
-              <div className="flex items-center gap-3 mt-2">
-                <div className="h-10 w-10 rounded-full bg-gradient-to-br from-emerald-500 to-sky-500 flex items-center justify-center text-slate-950 font-bold text-sm">
-                  {user?.nome ? user.nome[0].toUpperCase() : 'A'}
-                </div>
-                <div className="text-xs text-slate-300">
-                  <p>Avatar padrão ativo</p>
-                  <p className="text-slate-500">Personalização em breve</p>
-                </div>
-              </div>
-            </div>
-          </aside>
+        <div className="bg-white p-6 shadow rounded-xl">
+          <h2 className="text-xl font-semibold mb-2">🤖 Avatar IA</h2>
+          <p className="text-gray-600">Em breve.</p>
         </div>
-      </main>
 
-      <Footer />
+      </div>
+
+      {/* BOTÃO SAIR */}
+      <div className="mt-10">
+        <button
+          onClick={logout}
+          className="bg-red-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-700 transition"
+        >
+          Sair da Conta
+        </button>
+      </div>
+
     </div>
   );
 }
