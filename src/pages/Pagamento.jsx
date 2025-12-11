@@ -4,27 +4,20 @@ import { useNavigate } from "react-router-dom";
 export default function Pagamento() {
   const navigate = useNavigate();
 
-  function simularPagamento() {
-    // salva estado de pagamento concluído
-    localStorage.setItem("pagamento_ok", "true");
-
-    // redireciona para o dashboard
+  const handlePagamento = () => {
+    alert("Pagamento realizado com sucesso!");
     navigate("/dashboard");
-  }
+  };
 
   return (
-    <div className="p-8 max-w-3xl mx-auto text-center">
-      <h1 className="text-3xl font-bold mb-6">Pagamento do Curso</h1>
-
-      <p className="text-gray-600 mb-6 text-lg">
-        Para fins de teste, este botão simula o pagamento real.
-      </p>
-
-      <button
-        onClick={simularPagamento}
-        className="px-6 py-3 bg-green-600 hover:bg-green-500 text-white rounded-lg font-bold text-lg"
+    <div className="min-h-screen flex flex-col justify-center items-center bg-slate-950 text-white">
+      <h1 className="text-2xl font-bold mb-4">Pagamento</h1>
+      <p className="mb-6">Clique no botão para simular o pagamento e acessar o curso.</p>
+      <button 
+        onClick={handlePagamento} 
+        className="px-6 py-3 bg-emerald-500 rounded hover:bg-emerald-400"
       >
-        💳 Pagar agora (Simulado)
+        Pagar Agora
       </button>
     </div>
   );
