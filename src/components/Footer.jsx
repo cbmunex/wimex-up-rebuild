@@ -1,15 +1,21 @@
 // src/components/Footer.jsx
+import logoVideo from "../assets/logo.mp4";
+
 export default function Footer() {
   return (
     <footer className="border-t border-slate-800 bg-slate-950 mt-12">
       <div className="max-w-7xl mx-auto px-6 py-8 text-sm text-slate-400 grid md:grid-cols-3 gap-4">
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-3">
-            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-slate-700 shadow-lg shadow-wimex-blue/10 animate-pulse-soft">
-              <img
-                src="/logo.png"
-                alt="Wimex-up Logo"
+            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-slate-700 shadow-lg shadow-wimex-blue/10">
+              <video
+                src={logoVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="w-full h-full object-cover"
+                poster="/logo-frame.png"
               />
             </div>
             <div>
