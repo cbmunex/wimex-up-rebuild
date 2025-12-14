@@ -22,13 +22,10 @@ export default function Header() {
     <header className="fixed w-full z-40 border-b border-slate-800 bg-black/90 backdrop-blur">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollToId("hero")}>
-          <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-wimex-blue shadow-lg shadow-wimex-blue/20">
-            <video
-              src="/logo.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
+          <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-wimex-blue shadow-lg shadow-wimex-blue/20 animate-pulse-soft">
+            <img
+              src="/logo.png"
+              alt="Wimex-up Logo"
               className="w-full h-full object-cover"
             />
           </div>

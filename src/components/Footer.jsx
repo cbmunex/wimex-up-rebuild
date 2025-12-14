@@ -5,13 +5,10 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-8 text-sm text-slate-400 grid md:grid-cols-3 gap-4">
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-3">
-            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-slate-700 shadow-lg shadow-wimex-blue/10">
-              <video
-                src="/logo.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
+            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-slate-700 shadow-lg shadow-wimex-blue/10 animate-pulse-soft">
+              <img
+                src="/logo.png"
+                alt="Wimex-up Logo"
                 className="w-full h-full object-cover"
               />
             </div>
