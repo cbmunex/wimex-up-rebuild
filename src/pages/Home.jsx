@@ -197,7 +197,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                 </div>
                 <h4 className="font-bold text-white mb-1 group-hover:text-wimex-blue transition-colors">Nova York</h4>
-                <p className="text-xs text-slate-500 mb-3">5 lições | 15 steps</p>
+                <p className="text-xs text-slate-500 mb-3">5 lições | 15 passos</p>
                 <p className="text-slate-400 text-sm">
                   Conheça a Times Square e a Estátua da Liberdade enquanto aprende.
                 </p>
@@ -214,7 +214,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                 </div>
                 <h4 className="font-bold text-white mb-1 group-hover:text-wimex-blue transition-colors">São Francisco</h4>
-                <p className="text-xs text-slate-500 mb-3">5 lições | 15 steps</p>
+                <p className="text-xs text-slate-500 mb-3">5 lições | 15 passos</p>
                 <p className="text-slate-400 text-sm">
                   Visite a Costa Oeste, Alamo Square e Alcatraz.
                 </p>
@@ -231,7 +231,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                 </div>
                 <h4 className="font-bold text-white mb-1 group-hover:text-wimex-blue transition-colors">Miami</h4>
-                <p className="text-xs text-slate-500 mb-3">5 lições | 15 steps</p>
+                <p className="text-xs text-slate-500 mb-3">5 lições | 15 passos</p>
                 <p className="text-slate-400 text-sm">
                   Aprenda descrições e narrações conhecendo Miami Beach.
                 </p>
@@ -248,7 +248,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                 </div>
                 <h4 className="font-bold text-white mb-1 group-hover:text-wimex-blue transition-colors">Filadélfia</h4>
-                <p className="text-xs text-slate-500 mb-3">5 lições | 15 steps</p>
+                <p className="text-xs text-slate-500 mb-3">5 lições | 15 passos</p>
                 <p className="text-slate-400 text-sm">
                   História dos EUA e o Liberty Bell com narrações em inglês.
                 </p>
@@ -321,7 +321,7 @@ export default function Home() {
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-wimex-blue font-bold shadow-lg shadow-wimex-blue/10">M</div>
                   <div>
-                    <p className="font-semibold text-white text-sm">Marcelo Damasio</p>
+                    <p className="font-semibold text-white text-sm">Marcelo Dias</p>
                     <p className="text-xs text-slate-500">Aluno Wimex-up</p>
                   </div>
                 </div>
@@ -335,7 +335,7 @@ export default function Home() {
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-wimex-blue font-bold shadow-lg shadow-wimex-blue/10">H</div>
                   <div>
-                    <p className="font-semibold text-white text-sm">Henrique Carvalho</p>
+                    <p className="font-semibold text-white text-sm">Carvalho da Silva</p>
                     <p className="text-xs text-slate-500">Aluno Wimex-up</p>
                   </div>
                 </div>
@@ -349,7 +349,7 @@ export default function Home() {
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-wimex-blue font-bold shadow-lg shadow-wimex-blue/10">E</div>
                   <div>
-                    <p className="font-semibold text-white text-sm">Estefânia Queiroz</p>
+                    <p className="font-semibold text-white text-sm">Ester Queiroz</p>
                     <p className="text-xs text-slate-500">Professora</p>
                   </div>
                 </div>
@@ -404,7 +404,7 @@ export default function Home() {
               </div>
 
               <div className="bg-slate-900/40 p-6 rounded-3xl border border-slate-700 flex flex-col">
-                <h3 className="text-xl font-semibold text-wimex-blue mb-2">Teste de Nivelamento</h3>
+                <h3 className="text-xl font-semibold text-wimex-blue mb-2">Teste seu inglês</h3>
                 <p className="text-slate-300 text-sm mb-4 mt-2">
                   Não sabe por onde começar? Faça nosso teste gratuito e descubra seu nível.
                 </p>
