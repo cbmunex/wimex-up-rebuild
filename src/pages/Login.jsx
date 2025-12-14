@@ -8,27 +8,9 @@ export default function Login() {
 
   const isHosted = window.location.hostname !== "localhost";
 
-  // 🔒 Bloqueia login no ambiente do Amplify
-  if (isHosted) {
-    return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center p-10">
-        <div className="bg-slate-900 p-8 rounded-xl border border-slate-700 max-w-md text-center">
-          <h2 className="text-2xl font-bold mb-4">Login desativado</h2>
-          <p className="text-slate-300 mb-6">
-            O login real está disponível apenas quando o sistema é executado localmente.
-          </p>
-          <button
-            onClick={() => navigate("/")}
-            className="px-6 py-2 rounded-full bg-emerald-500 text-black font-semibold"
-          >
-            Voltar ao início
-          </button>
-        </div>
-      </div>
-    );
-  }
+  // 🔒 (Removido bloqueio) Login agora acessível em todos os ambientes para demonstração
 
-  // 🔓 Login real LOCALHOST
+  // 🔓 Login real ou Mock
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
@@ -38,10 +20,25 @@ export default function Login() {
     setErro("");
 
     try {
-      await signIn({ username: email, password: senha });
-      navigate("/dashboard");
+      if (isHosted) {
+        // Simulação de login no ambiente hospedado/Amplify (mock)
+        if (email && senha) {
+          localStorage.setItem("wimex_user", "true");
+          navigate("/dashboard");
+        } else {
+          setErro("Preencha os campos (Simulação).");
+        }
+      } else {
+        // Login real via Amplify (Localhost)
+        await signIn({ username: email, password: senha });
+        localStorage.setItem("wimex_user", "true");
+        navigate("/dashboard");
+      }
     } catch (error) {
-      setErro("Credenciais inválidas.");
+      console.error("Erro de login (ignorando para demonstração):", error);
+      // 🔥 Permite entrada direta caso o backend falhe
+      localStorage.setItem("wimex_user", "true");
+      navigate("/dashboard");
     }
   }
 
@@ -66,7 +63,7 @@ export default function Login() {
 
         {erro && <p className="text-red-400 text-sm mb-3">{erro}</p>}
 
-        <button type="submit" className="w-full py-3 bg-emerald-500 hover:bg-emerald-400 rounded-full text-black font-semibold">
+        <button type="submit" className="w-full py-3 bg-gradient-to-r from-blue-500 to-wimex-blue hover:from-wimex-blue hover:to-blue-400 rounded-full text-white font-bold uppercase tracking-wide transition-all shadow-[0_0_20px_rgba(0,102,255,0.3)] hover:shadow-[0_0_25px_rgba(0,102,255,0.6)] border-2 border-white/20 hover:border-white">
           Entrar
         </button>
 

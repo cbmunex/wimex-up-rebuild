@@ -21,17 +21,20 @@ export default function Header() {
   return (
     <header className="fixed w-full z-40 border-b border-slate-800 bg-black/90 backdrop-blur">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-        <div
-          className="flex items-center gap-3 cursor-pointer"
-          onClick={() => navigate("/")}
-        >
-          <div className="w-10 h-10 rounded-full bg-slate-900 border border-emerald-500/70 flex items-center justify-center overflow-hidden">
-            {/* substitua /logo.png pelo seu logo no public */}
-            <img src="/logo.png" alt="WIMEX-UP" className="w-9 h-9 object-contain" />
+        <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollToId("hero")}>
+          <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-wimex-blue shadow-lg shadow-wimex-blue/20">
+            <video
+              src="/logo.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            />
           </div>
           <div className="leading-tight">
-            <span className="text-xs text-emerald-400 font-semibold tracking-widest">WIMEX-UP</span>
-            <div className="text-sm font-semibold text-white">English Course</div>
+            <span className="text-xs text-wimex-blue font-bold tracking-widest block drop-shadow-sm">WIMEX-UP</span>
+            <span className="text-xs font-semibold text-white">English Course</span>
           </div>
         </div>
 
@@ -48,12 +51,12 @@ export default function Header() {
 
           <button
             onClick={() => navigate("/matricula")}
-            className="hidden sm:inline-flex px-4 py-2 rounded-full bg-emerald-500 hover:bg-emerald-400 text-sm font-semibold text-slate-900"
+            className="hidden sm:inline-flex px-4 py-2 rounded-full bg-gradient-to-r from-wimex-blue to-wimex-blue-dark hover:from-wimex-blue-dark hover:to-wimex-blue text-sm font-semibold text-white shadow-lg shadow-wimex-blue/30 transition-all active:scale-95"
           >
             Matricule-se
           </button>
         </div>
-      </div>
-    </header>
+      </div >
+    </header >
   );
 }

@@ -7,9 +7,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'wimex-blue': '#0066FF',
-        'wimex-purple': '#9D4EDD',
-        'wimex-lime': '#CCFF00',
+        colors: {
+          'wimex-blue': '#0066FF',
+          'wimex-blue-dark': '#004ec2',
+          'wimex-metallic': '#cbd5e1', // Slate-300
+        },
       },
       fontFamily: {
         'montserrat': ['Montserrat', 'sans-serif'],
