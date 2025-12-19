@@ -370,7 +370,7 @@ export default function Home() {
 
             {/* Simples repetição dos planos originais para manter funcionalidade */}
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-slate-900/40 p-6 rounded-3xl border border-slate-700 flex flex-col">
+              <div className="bg-slate-900/40 p-6 rounded-3xl border border-slate-600 hover:border-wimex-blue/60 flex flex-col">
                 <h3 className="text-xl font-semibold text-wimex-blue mb-2">Plano Recorrente</h3>
                 <p className="text-3xl font-bold">R$ 149,90</p>
                 <p className="text-xs text-slate-400 mb-4">por mês • sem fidelidade</p>
@@ -381,13 +381,13 @@ export default function Home() {
                 </ul>
                 <button
                   onClick={() => navigate("/matricula?plan=recorrente")}
-                  className="mt-auto w-full py-3 rounded-full bg-gradient-to-r from-wimex-blue to-wimex-blue-dark hover:from-wimex-blue-dark hover:to-wimex-blue text-white font-semibold shadow-lg shadow-wimex-blue/20"
+                  className="mt-auto w-full py-3 rounded-full border border-slate-600 hover:border-wimex-blue hover:text-wimex-blue text-white font-semibold transition-colors"
                 >
                   Assinar agora
                 </button>
               </div>
 
-              <div className="bg-slate-900/40 p-6 rounded-3xl border border-wimex-blue flex flex-col relative overflow-hidden shadow-2xl shadow-wimex-blue/10">
+              <div className="bg-slate-900/40 p-6 rounded-3xl border border-slate-600 hover:border-wimex-blue/60 flex flex-col relative overflow-hidden shadow-2xl shadow-wimex-blue/10">
                 <div className="absolute top-0 right-0 bg-wimex-blue text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-md">MAIS VENDIDO</div>
                 <h3 className="text-xl font-semibold text-wimex-blue mb-2">Plano Vitalício</h3>
                 <p className="text-3xl font-bold">R$ 179,90</p>
@@ -397,13 +397,13 @@ export default function Home() {
                 </p>
                 <button
                   onClick={() => navigate("/matricula?plan=vitalicio")}
-                  className="mt-auto w-full py-3 rounded-full bg-gradient-to-r from-wimex-blue to-wimex-blue-dark hover:from-wimex-blue-dark hover:to-wimex-blue text-white font-semibold shadow-lg shadow-wimex-blue/30 scale-105 active:scale-100 transition-all"
+                  className="mt-auto w-full py-3 rounded-full border border-slate-600 hover:border-wimex-blue hover:text-wimex-blue text-white font-semibold transition-colors"
                 >
                   Quero acesso vitalício
                 </button>
               </div>
 
-              <div className="bg-slate-900/40 p-6 rounded-3xl border border-slate-700 flex flex-col">
+              <div className="bg-slate-900/40 p-6 rounded-3xl border border-slate-600 hover:border-wimex-blue/60 flex flex-col">
                 <h3 className="text-xl font-semibold text-wimex-blue mb-2">Teste seu inglês</h3>
                 <p className="text-slate-300 text-sm mb-4 mt-2">
                   Não sabe por onde começar? Faça nosso teste gratuito e descubra seu nível.

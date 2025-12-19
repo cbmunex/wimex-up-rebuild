@@ -1,15 +1,21 @@
-import { useEffect, useState } from "react";
-import { Auth } from "aws-amplify";
+// src/hooks/useAuth.js
+import { createContext, useContext, useEffect, useState } from "react";
+import { getCurrentUser } from "@aws-amplify/auth";
 
-export function useAuth() {
+const AuthContext = createContext();
+
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   async function checkUser() {
     try {
-      const current = await Auth.currentAuthenticatedUser();
-      setUser(current);
-    } catch (err) {
+      const currentUser = await getCurrentUser();
+      setUser(currentUser);
+    } catch {
       setUser(null);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -17,5 +23,13 @@ export function useAuth() {
     checkUser();
   }, []);
 
-  return { user, checkUser };
+  return (
+    <AuthContext.Provider value={{ user, loading, checkUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+export function useAuth() {
+  return useContext(AuthContext);
 }

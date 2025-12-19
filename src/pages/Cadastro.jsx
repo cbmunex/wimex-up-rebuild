@@ -1,37 +1,67 @@
 // src/pages/Cadastro.jsx
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { signUp } from "@aws-amplify/auth";
+
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default function Cadastro() {
   const navigate = useNavigate();
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [erro, setErro] = useState('');
 
-  function handleSubmit(e) {
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+
+  const [loading, setLoading] = useState(false);
+  const [erro, setErro] = useState("");
+  const [sucesso, setSucesso] = useState("");
+
+  async function handleSubmit(e) {
     e.preventDefault();
-    setErro('');
+    setErro("");
+    setSucesso("");
 
     if (!nome || !email || !senha) {
-      setErro('Preencha todos os campos.');
+      setErro("Preencha todos os campos.");
+      return;
+    }
+
+    if (senha.length < 8) {
+      setErro("A senha deve ter no mínimo 8 caracteres.");
       return;
     }
 
     setLoading(true);
 
-    // 🔒 Cadastro fictício temporário — até ativarmos Cognito
-    const user = { nome, email };
-    localStorage.setItem('wimex-user', JSON.stringify(user));
-    localStorage.setItem('wimex-auth', 'ok');
+    try {
+      await signUp({
+        username: email,
+        password: senha,
+        options: {
+          userAttributes: {
+            email,
+            name: nome,
+          },
+        },
+      });
 
-    setTimeout(() => {
+      setSucesso("Conta criada! Confirme seu e-mail.");
+
+      navigate("/confirmar", {
+        state: { email },
+      });
+    } catch (err) {
+      console.error(err);
+
+      if (err.name === "UsernameExistsException") {
+        setErro("Este e-mail já está cadastrado.");
+      } else {
+        setErro("Erro ao criar conta.");
+      }
+    } finally {
       setLoading(false);
-      navigate('/dashboard');
-    }, 600);
+    }
   }
 
   return (
@@ -39,70 +69,49 @@ export default function Cadastro() {
       <Header />
 
       <main className="flex-1 flex items-center justify-center px-4 py-10">
-        <div className="w-full max-w-md bg-slate-900/70 border border-slate-800 rounded-2xl p-6 shadow-xl">
-          <h1 className="text-2xl font-semibold mb-2 text-emerald-400">
-            Criar sua conta
+        <div className="w-full max-w-md bg-slate-900/70 border border-slate-800 rounded-2xl p-6">
+          <h1 className="text-2xl font-semibold text-emerald-400 mb-4">
+            Criar conta
           </h1>
 
-          <p className="text-sm text-slate-400 mb-6">
-            Cadastre-se para acessar a plataforma WiMEX-UP.
-          </p>
-
           <form onSubmit={handleSubmit} className="space-y-4">
+            <input
+              placeholder="Nome completo"
+              className="w-full px-3 py-2 rounded bg-slate-950 border border-slate-700"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+            />
 
-            <div>
-              <label className="text-xs text-slate-400 block mb-1">
-                Nome completo
-              </label>
-              <input
-                type="text"
-                className="w-full rounded-lg bg-slate-950 border border-slate-700 px-3 py-2 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-emerald-400"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
-              />
-            </div>
+            <input
+              type="email"
+              placeholder="E-mail"
+              className="w-full px-3 py-2 rounded bg-slate-950 border border-slate-700"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-            <div>
-              <label className="text-xs text-slate-400 block mb-1">
-                E-mail
-              </label>
-              <input
-                type="email"
-                className="w-full rounded-lg bg-slate-950 border border-slate-700 px-3 py-2 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-emerald-400"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
+            <input
+              type="password"
+              placeholder="Senha"
+              className="w-full px-3 py-2 rounded bg-slate-950 border border-slate-700"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+            />
 
-            <div>
-              <label className="text-xs text-slate-400 block mb-1">
-                Senha
-              </label>
-              <input
-                type="password"
-                className="w-full rounded-lg bg-slate-950 border border-slate-700 px-3 py-2 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-emerald-400"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-              />
-            </div>
-
-            {erro && (
-              <p className="text-xs text-red-400">{erro}</p>
-            )}
+            {erro && <p className="text-red-400 text-sm">{erro}</p>}
+            {sucesso && <p className="text-emerald-400 text-sm">{sucesso}</p>}
 
             <button
-              type="submit"
               disabled={loading}
-              className="w-full py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-semibold text-sm transition disabled:opacity-60"
+              className="w-full bg-emerald-500 text-slate-900 py-2 rounded"
             >
-              {loading ? 'Criando conta...' : 'Criar conta'}
+              {loading ? "Criando..." : "Criar conta"}
             </button>
-
           </form>
 
-          <p className="mt-4 text-xs text-slate-400">
+          <p className="text-sm mt-4">
             Já tem conta?
-            <Link to="/login" className="text-emerald-400 hover:underline ml-1">
+            <Link to="/login" className="ml-1 text-emerald-400">
               Entrar
             </Link>
           </p>
