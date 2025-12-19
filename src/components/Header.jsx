@@ -2,7 +2,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { signOut } from "@aws-amplify/auth";
 import { useAuth } from "../hooks/useAuth";
-import logoVideo from "../assets/logo.mp4";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -42,16 +41,21 @@ export default function Header() {
           className="flex items-center gap-3 cursor-pointer"
           onClick={() => scrollToId("hero")}
         >
-          <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-wimex-blue shadow-lg shadow-wimex-blue/20">
+          <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-wimex-blue shadow-lg shadow-wimex-blue/20 bg-black">
             <video
-              src={logoVideo}
+              src="/videos/logo.mp4"
               autoPlay
               loop
               muted
               playsInline
+              preload="auto"
               className="w-full h-full object-cover"
+              onError={(e) => {
+                e.target.style.display = "none";
+              }}
             />
           </div>
+
           <div className="leading-tight">
             <span className="text-xs text-wimex-blue font-bold tracking-widest block">
               WIMEX-UP
