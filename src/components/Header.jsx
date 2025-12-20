@@ -3,6 +3,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { signOut } from "@aws-amplify/auth";
 import { useAuth } from "../hooks/useAuth";
 
+// LOGO (IGUAL AO FOOTER)
+import logo from "../assets/logo.png";
+
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -15,11 +18,15 @@ export default function Header() {
       navigate("/");
       setTimeout(() => {
         const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 300);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 350);
     } else {
       const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
   }
 
@@ -33,17 +40,17 @@ export default function Header() {
   }
 
   return (
-    <header className="fixed w-full z-40 border-b border-slate-800 bg-black/90 backdrop-blur">
+    <header className="fixed top-0 w-full z-40 border-b border-slate-800 bg-black/90 backdrop-blur">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
         {/* LOGO */}
         <div
-          className="flex items-center gap-3 cursor-pointer group"
+          className="flex items-center gap-3 cursor-pointer"
           onClick={() => scrollToId("hero")}
         >
-          <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-wimex-blue shadow-lg shadow-wimex-blue/30 animate-logo-float">
+          <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-wimex-blue shadow-lg shadow-wimex-blue/30 flex items-center justify-center bg-black">
             <img
-              src="/images/logo-frame.png"
+              src={logo}
               alt="WIMEX-UP"
               className="w-full h-full object-contain p-1"
             />
@@ -86,6 +93,7 @@ export default function Header() {
 
           {!isAuth ? (
             <>
+              {/* NÃO LOGADO */}
               <button
                 onClick={() => navigate("/login")}
                 className="text-sm text-slate-300 hover:text-white"
@@ -102,6 +110,7 @@ export default function Header() {
             </>
           ) : (
             <>
+              {/* LOGADO */}
               <button
                 onClick={() => navigate("/dashboard")}
                 className="text-sm text-slate-300 hover:text-white"
