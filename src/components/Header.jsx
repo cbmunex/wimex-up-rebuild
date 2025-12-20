@@ -2,9 +2,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { signOut } from "@aws-amplify/auth";
 import { useAuth } from "../hooks/useAuth";
-
-// LOGO (IGUAL AO FOOTER)
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.png"; // MESMO LOGO DO RODAPÉ
 
 export default function Header() {
   const navigate = useNavigate();
@@ -18,15 +16,11 @@ export default function Header() {
       navigate("/");
       setTimeout(() => {
         const el = document.getElementById(id);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }, 350);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 300);
     } else {
       const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }
 
@@ -43,27 +37,26 @@ export default function Header() {
     <header className="fixed top-0 w-full z-40 border-b border-slate-800 bg-black/90 backdrop-blur">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
-        {/* LOGO */}
-          <div
-            className="flex items-center gap-3 cursor-pointer"
-            onClick={() => scrollToId("hero")}
-          >
-            <img
-              src={logo}
-              alt="WIMEX-UP"
-              className="h-10 w-auto object-contain"
-            />
+        {/* LOGO — IGUAL AO RODAPÉ */}
+        <div
+          onClick={() => scrollToId("hero")}
+          className="flex items-center gap-3 cursor-pointer"
+        >
+          <img
+            src={logo}
+            alt="WIMEX-UP"
+            className="h-10 w-auto"
+          />
 
-            <div className="leading-tight">
-              <span className="text-xs text-wimex-blue font-bold tracking-widest block">
-                WIMEX-UP
-              </span>
-              <span className="text-xs font-semibold text-white">
-                English Course
-              </span>
-            </div>
+          <div className="leading-tight">
+            <span className="text-xs text-wimex-blue font-bold tracking-widest block">
+              WIMEX-UP
+            </span>
+            <span className="text-xs font-semibold text-white">
+              English Course
+            </span>
           </div>
-
+        </div>
 
         {/* MENU */}
         <nav className="hidden md:flex gap-6 text-sm text-slate-300">
@@ -92,7 +85,6 @@ export default function Header() {
 
           {!isAuth ? (
             <>
-              {/* NÃO LOGADO */}
               <button
                 onClick={() => navigate("/login")}
                 className="text-sm text-slate-300 hover:text-white"
@@ -102,14 +94,13 @@ export default function Header() {
 
               <button
                 onClick={() => navigate("/matricula")}
-                className="hidden sm:inline-flex px-4 py-2 rounded-full bg-gradient-to-r from-wimex-blue to-wimex-blue-dark text-sm font-semibold text-white shadow-lg shadow-wimex-blue/30 transition-all"
+                className="hidden sm:inline-flex px-4 py-2 rounded-full bg-gradient-to-r from-wimex-blue to-wimex-blue-dark text-sm font-semibold text-white shadow-lg shadow-wimex-blue/30"
               >
                 Matricule-se
               </button>
             </>
           ) : (
             <>
-              {/* LOGADO */}
               <button
                 onClick={() => navigate("/dashboard")}
                 className="text-sm text-slate-300 hover:text-white"
