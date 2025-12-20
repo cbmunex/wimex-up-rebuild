@@ -44,27 +44,26 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
         {/* LOGO */}
-        <div
-          className="flex items-center gap-3 cursor-pointer"
-          onClick={() => scrollToId("hero")}
-        >
-          <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-wimex-blue shadow-lg shadow-wimex-blue/30 flex items-center justify-center bg-black">
+          <div
+            className="flex items-center gap-3 cursor-pointer"
+            onClick={() => scrollToId("hero")}
+          >
             <img
               src={logo}
               alt="WIMEX-UP"
-              className="w-full h-full object-contain p-1"
+              className="h-10 w-auto object-contain"
             />
+
+            <div className="leading-tight">
+              <span className="text-xs text-wimex-blue font-bold tracking-widest block">
+                WIMEX-UP
+              </span>
+              <span className="text-xs font-semibold text-white">
+                English Course
+              </span>
+            </div>
           </div>
 
-          <div className="leading-tight">
-            <span className="text-xs text-wimex-blue font-bold tracking-widest block">
-              WIMEX-UP
-            </span>
-            <span className="text-xs font-semibold text-white">
-              English Course
-            </span>
-          </div>
-        </div>
 
         {/* MENU */}
         <nav className="hidden md:flex gap-6 text-sm text-slate-300">
