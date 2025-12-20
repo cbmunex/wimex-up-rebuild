@@ -2,7 +2,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { signOut } from "@aws-amplify/auth";
 import { useAuth } from "../hooks/useAuth";
-import logo from "../assets/logo.png"; // MESMO LOGO DO RODAPÉ
+import logoVideo from "../assets/logo.mp4";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -37,16 +37,22 @@ export default function Header() {
     <header className="fixed top-0 w-full z-40 border-b border-slate-800 bg-black/90 backdrop-blur">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
-        {/* LOGO — IGUAL AO RODAPÉ */}
+        {/* LOGO — IGUAL AO FOOTER */}
         <div
           onClick={() => scrollToId("hero")}
           className="flex items-center gap-3 cursor-pointer"
         >
-          <img
-            src={logo}
-            alt="WIMEX-UP"
-            className="h-10 w-auto"
-          />
+          <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-slate-700 shadow-lg shadow-wimex-blue/20">
+            <video
+              src={logoVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+              poster="/logo-frame.png"
+            />
+          </div>
 
           <div className="leading-tight">
             <span className="text-xs text-wimex-blue font-bold tracking-widest block">
