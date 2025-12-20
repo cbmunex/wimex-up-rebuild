@@ -43,7 +43,7 @@ export default function Header() {
         >
           <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-wimex-blue shadow-lg shadow-wimex-blue/30 animate-logo-float">
             <img
-              src="/images/logo.png"
+              src="/images/logo-frame.png"
               alt="WIMEX-UP"
               className="w-full h-full object-contain p-1"
             />
