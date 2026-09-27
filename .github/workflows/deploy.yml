@@ -1,0 +1,16 @@
+name: Deploy WIMEX-UP Frontend
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Deploy
+        run: |
+          cd /opt/wimexup-frontend
+          git pull origin main
+          npm install
+          npm run build
