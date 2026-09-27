@@ -1,13 +1,15 @@
 // src/components/Header.jsx
 import { useNavigate, useLocation } from "react-router-dom";
-import { signOut } from "@aws-amplify/auth";
+import { logoutUser } from "../services/authService";
 import { useAuth } from "../hooks/useAuth";
+import { useTheme } from "../hooks/useTheme";
 import logoVideo from "../assets/logo.mp4";
 
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useAuth();
+  const { tema, alternarTema } = useTheme();
 
   const isAuth = !!user;
 
@@ -26,15 +28,15 @@ export default function Header() {
 
   async function handleLogout() {
     try {
-      await signOut();
-      navigate("/");
+      await logoutUser();
+      window.location.href = "/";
     } catch (err) {
       console.error("Erro ao sair:", err);
     }
   }
 
   return (
-    <header className="fixed top-0 w-full z-40 border-b border-slate-800 bg-black/90 backdrop-blur">
+    <header className="fixed top-0 w-full z-40 border-b border-slate-300 dark:border-slate-800 bg-white/90 dark:bg-black/90 backdrop-blur">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
         {/* LOGO — IGUAL AO FOOTER */}
@@ -58,24 +60,24 @@ export default function Header() {
             <span className="text-xs text-wimex-blue font-bold tracking-widest block">
               WIMEX-UP
             </span>
-            <span className="text-xs font-semibold text-white">
+            <span className="text-xs font-semibold text-slate-900 dark:text-white">
               English Course
             </span>
           </div>
         </div>
 
         {/* MENU */}
-        <nav className="hidden md:flex gap-6 text-sm text-slate-300">
-          <button onClick={() => scrollToId("method")} className="hover:text-white">
+        <nav className="hidden md:flex gap-6 text-sm text-slate-600 dark:text-slate-300">
+          <button onClick={() => scrollToId("method")} className="hover:text-slate-900 dark:hover:text-white">
             Método
           </button>
-          <button onClick={() => scrollToId("who")} className="hover:text-white">
+          <button onClick={() => scrollToId("who")} className="hover:text-slate-900 dark:hover:text-white">
             Para quem é
           </button>
-          <button onClick={() => scrollToId("plans")} className="hover:text-white">
+          <button onClick={() => scrollToId("plans")} className="hover:text-slate-900 dark:hover:text-white">
             Planos
           </button>
-          <button onClick={() => scrollToId("faq")} className="hover:text-white">
+          <button onClick={() => scrollToId("faq")} className="hover:text-slate-900 dark:hover:text-white">
             Dúvidas
           </button>
         </nav>
@@ -83,8 +85,16 @@ export default function Header() {
         {/* AÇÕES */}
         <div className="flex items-center gap-3">
           <button
+            onClick={alternarTema}
+            className="text-lg leading-none"
+            title="Trocar tema"
+          >
+            {tema === "claro" ? "🌙" : "☀️"}
+          </button>
+
+          <button
             onClick={() => navigate("/consultor")}
-            className="text-sm text-slate-300 hover:text-white"
+            className="text-sm text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
           >
             Fale com consultor
           </button>
@@ -93,7 +103,7 @@ export default function Header() {
             <>
               <button
                 onClick={() => navigate("/login")}
-                className="text-sm text-slate-300 hover:text-white"
+                className="text-sm text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
               >
                 Já sou aluno
               </button>
@@ -109,7 +119,7 @@ export default function Header() {
             <>
               <button
                 onClick={() => navigate("/dashboard")}
-                className="text-sm text-slate-300 hover:text-white"
+                className="text-sm text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
               >
                 Dashboard
               </button>

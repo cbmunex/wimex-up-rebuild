@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
+import { useAuth } from "../hooks/useAuth";
 
 const modulosCidades = [
   {
@@ -46,10 +48,10 @@ function Section({ title, items, navigate }) {
           <div
             key={item.id}
             onClick={() => navigate(`/module/${item.id}`)}
-            className="cursor-pointer bg-slate-900 border border-slate-700 rounded-xl p-6 hover:border-wimex-blue transition"
+            className="cursor-pointer bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl p-6 hover:border-wimex-blue transition shadow-md dark:shadow-none"
           >
             <h3 className="text-lg font-semibold">{item.titulo}</h3>
-            <p className="text-slate-400 mt-2 text-sm">
+            <p className="text-slate-500 dark:text-slate-400 mt-2 text-sm">
               {item.descricao}
             </p>
           </div>
@@ -60,13 +62,36 @@ function Section({ title, items, navigate }) {
 }
 
 export default function Dashboard() {
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   return (
-    <div className="p-8 max-w-7xl mx-auto text-white">
-      <h1 className="text-3xl font-bold mb-10">
-        Sua jornada de aprendizado
-      </h1>
+    <div className="min-h-screen bg-slate-50 dark:bg-black text-slate-900 dark:text-white">
+      <Header />
+      <div className="p-8 pt-28 max-w-7xl mx-auto">
+        {user && (
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-4 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-2xl px-6 py-4 shadow-md dark:shadow-none">
+            <div>
+              <p className="text-xl font-bold">Olá, {user.nome || user.email} 👋</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">{user.email}</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1.5 text-orange-500 dark:text-orange-400 font-bold text-sm">
+                🔥 {user.streak_atual || 0} {user.streak_atual === 1 ? "dia" : "dias"}
+              </div>
+              <div className="flex items-center gap-1.5 text-blue-600 dark:text-blue-400 font-bold text-sm">
+                ⚡ {user.xp || 0} XP
+              </div>
+              <span className="px-3 py-1.5 rounded-full bg-blue-600/20 text-blue-600 dark:text-blue-400 text-xs font-semibold uppercase tracking-wide">
+                Plano {user.plano || "gratuito"}
+              </span>
+            </div>
+          </div>
+        )}
+
+        <h1 className="text-3xl font-bold mb-10">
+          Sua jornada de aprendizado
+        </h1>
 
       {/* CIDADES */}
       <Section
@@ -81,6 +106,7 @@ export default function Dashboard() {
         items={modulosTravel}
         navigate={navigate}
       />
+      </div>
     </div>
   );
 }

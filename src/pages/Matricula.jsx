@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signUp } from "@aws-amplify/auth";
+import { createUserAccount } from "../services/authService";
+import { useAuth } from "../hooks/useAuth";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -37,6 +38,7 @@ function maskCEP(value) {
 ================================ */
 export default function Matricula() {
   const navigate = useNavigate();
+  const { refreshUser } = useAuth();
 
   const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState("");
@@ -120,20 +122,17 @@ export default function Matricula() {
     try {
       setLoading(true);
 
-      /* 1️⃣ CRIA USUÁRIO NO COGNITO (SÓ AUTENTICAÇÃO) */
-      await signUp({
-        username: email,
+      /* 1️⃣ CRIA USUÁRIO NA API PRÓPRIA (já loga automaticamente) */
+      await createUserAccount({
+        email,
         password: senha,
-        options: {
-          userAttributes: {
-            email,
-            name: nome,
-          },
-        },
+        nome,
+        cpf,
+        plan: plano,
       });
 
-      /* 2️⃣ SALVA MATRÍCULA COMO PENDENTE (CONTROLE DE ACESSO) */
-      localStorage.setItem("matricula-status", "pendente");
+      /* 2️⃣ LIBERA ACESSO TEMPORARIAMENTE (pagamento real entra na Fase 4) */
+      localStorage.setItem("matricula-status", "pago");
 
       localStorage.setItem(
         "matricula-dados",
@@ -151,22 +150,18 @@ export default function Matricula() {
           },
           plano,
           email,
-          status: "pendente",
+          status: "ativo",
           criadoEm: new Date().toISOString(),
         })
       );
 
-      /* 3️⃣ VAI PARA CONFIRMAÇÃO DE E-MAIL */
-      navigate("/confirmar", { state: { email } });
+      /* 3️⃣ ATUALIZA O ESTADO DE AUTENTICAÇÃO E VAI PRO DASHBOARD */
+      await refreshUser();
+      navigate("/dashboard");
 
     } catch (err) {
       console.error(err);
-
-      if (err.name === "UsernameExistsException") {
-        setErro("Este e-mail já está cadastrado.");
-      } else {
-        setErro("Erro ao realizar matrícula.");
-      }
+      setErro(err.message || "Erro ao realizar matrícula.");
     } finally {
       setLoading(false);
     }

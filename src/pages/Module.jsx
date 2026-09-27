@@ -14,7 +14,7 @@ export default function Module() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col">
+    <div className="min-h-screen bg-slate-50 dark:bg-black text-slate-900 dark:text-white flex flex-col">
       <Header />
       <div className="h-20" />
 
@@ -28,12 +28,12 @@ export default function Module() {
               onClick={() =>
                 navigate(`/lesson/${moduleId}/${licao.id}`)
               }
-              className="cursor-pointer bg-[#071428] border border-slate-800 rounded-xl p-5 hover:border-wimex-blue transition"
+              className="cursor-pointer bg-white dark:bg-[#071428] border border-slate-300 dark:border-slate-800 rounded-xl p-5 hover:border-wimex-blue transition shadow-md dark:shadow-none"
             >
               <h2 className="text-lg font-semibold">
                 Lição {licao.id} – {licao.titulo}
               </h2>
-              <p className="text-sm text-slate-400">
+              <p className="text-sm text-slate-500 dark:text-slate-400">
                 4 etapas • progresso obrigatório
               </p>
             </div>

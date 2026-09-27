@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { resetPassword, confirmResetPassword } from "@aws-amplify/auth";  // ← Mudança aqui
+// recuperação de senha por e-mail ainda não implementada nesta fase
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -23,16 +23,8 @@ export default function ForgotPassword() {
     if (!email) return setErro("Informe seu e-mail.");
 
     setLoading(true);
-    try {
-      await resetPassword({ username: email });  // ← Mudança aqui
-      setSucesso("Código enviado para seu e-mail.");
-      setStep(2);
-    } catch (err) {
-      console.error(err);
-      setErro(err.message || "Erro ao solicitar código.");
-    } finally {
-      setLoading(false);
-    }
+    setErro("Recuperação de senha por e-mail ainda não está disponível nesta fase do projeto. Entre em contato com o suporte.");
+    setLoading(false);
   }
 
   // Redefinir a senha com o código enviado
@@ -44,20 +36,8 @@ export default function ForgotPassword() {
       return setErro("Preencha todos os campos.");
 
     setLoading(true);
-    try {
-      await confirmResetPassword({ 
-        username: email,           // ← Mudança aqui (username em vez de email)
-        confirmationCode: codigo,  // ← confirmationCode em vez de codigo
-        newPassword: novaSenha     // ← newPassword em vez de novaSenha
-      });
-      setSucesso("Senha alterada! Redirecionando para login...");
-      setTimeout(() => navigate("/login"), 2000);
-    } catch (err) {
-      console.error(err);
-      setErro(err.message || "Erro ao redefinir senha.");
-    } finally {
-      setLoading(false);
-    }
+    setErro("Recuperação de senha por e-mail ainda não está disponível nesta fase do projeto.");
+    setLoading(false);
   }
 
   // O resto do JSX permanece exatamente igual

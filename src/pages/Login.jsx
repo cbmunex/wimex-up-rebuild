@@ -1,13 +1,15 @@
 // src/pages/Login.jsx
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { signIn } from "@aws-amplify/auth";
+import { loginUser } from "../services/authService";
+import { useAuth } from "../hooks/useAuth";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { refreshUser } = useAuth();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
@@ -19,20 +21,12 @@ export default function Login() {
     setLoading(true);
 
     try {
-      await signIn({
-        username: email,
-        password: senha,
-      });
-
+      await loginUser(email, senha);
+      await refreshUser();
       navigate("/dashboard");
     } catch (err) {
       console.error(err);
-
-      if (err.name === "UserNotConfirmedException") {
-        navigate("/confirmar", { state: { email } });
-      } else {
-        setErro("E-mail ou senha inválidos.");
-      }
+      setErro(err.message || "E-mail ou senha inválidos.");
     } finally {
       setLoading(false);
     }

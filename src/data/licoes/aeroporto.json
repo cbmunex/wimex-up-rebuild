@@ -1,0 +1,261 @@
+{
+  "id": "aeroporto",
+  "titulo": "Aeroporto",
+  "licoes": [
+    {
+      "id": 1,
+      "titulo": "Chegando ao aeroporto",
+      "cards": [
+        {
+          "tipo": "pergunta",
+          "professor": "Hi! Welcome to the airport. Do you have your passport ready?",
+          "opcoes": [
+            { "texto": "Yes, here it is.", "correta": true },
+            { "texto": "No, I have no time.", "correta": false },
+            { "texto": "Passport is home.", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "Great! Now, which line should you look for first?",
+          "opcoes": [
+            { "texto": "The check-in line.", "correta": true },
+            { "texto": "The exit line.", "correta": false },
+            { "texto": "The parking line.", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "The agent asks: 'Are you traveling alone?' How do you answer if you're with your family?",
+          "opcoes": [
+            { "texto": "No, I'm traveling with my family.", "correta": true },
+            { "texto": "No, I travel alone with family.", "correta": false },
+            { "texto": "Yes, my family is alone.", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "You need to find Gate 22. How do you ask a staff member?",
+          "opcoes": [
+            { "texto": "Excuse me, where is Gate 22?", "correta": true },
+            { "texto": "Gate 22 where is?", "correta": false },
+            { "texto": "I want Gate 22 now.", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "Perfect! Last one: how do you politely ask someone to repeat what they said?",
+          "opcoes": [
+            { "texto": "Sorry, could you repeat that?", "correta": true },
+            { "texto": "Repeat now, please.", "correta": false },
+            { "texto": "What? Say more.", "correta": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "titulo": "Fazendo o check-in",
+      "cards": [
+        {
+          "tipo": "pergunta",
+          "professor": "Good morning! Can I see your ticket and ID, please?",
+          "opcoes": [
+            { "texto": "Sure, here you go.", "correta": true },
+            { "texto": "No, is private.", "correta": false },
+            { "texto": "Ticket I don't have.", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "Do you have any bags to check in?",
+          "opcoes": [
+            { "texto": "Yes, just one bag.", "correta": true },
+            { "texto": "Yes, I have bag one.", "correta": false },
+            { "texto": "Bags no have.", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "The agent says your bag is 2kg over the limit. How do you ask what to do?",
+          "opcoes": [
+            { "texto": "What should I do now?", "correta": true },
+            { "texto": "What I make now?", "correta": false },
+            { "texto": "Do what I now?", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "Would you like a window or an aisle seat?",
+          "opcoes": [
+            { "texto": "I'd like a window seat, please.", "correta": true },
+            { "texto": "I want the window sit.", "correta": false },
+            { "texto": "Window for me is.", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "Here's your boarding pass. Your flight boards at 3 PM. How do you say thank you politely?",
+          "opcoes": [
+            { "texto": "Thank you so much!", "correta": true },
+            { "texto": "Thanks I go now.", "correta": false },
+            { "texto": "Good, bye now.", "correta": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "titulo": "Passando pela imigração",
+      "cards": [
+        {
+          "tipo": "pergunta",
+          "professor": "What is the purpose of your visit?",
+          "opcoes": [
+            { "texto": "I'm here on vacation.", "correta": true },
+            { "texto": "Purpose is vacation my.", "correta": false },
+            { "texto": "I visit for is vacation.", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "How long are you planning to stay?",
+          "opcoes": [
+            { "texto": "I'm staying for two weeks.", "correta": true },
+            { "texto": "I stay two weeks long.", "correta": false },
+            { "texto": "Two weeks I planning.", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "Where will you be staying?",
+          "opcoes": [
+            { "texto": "I'll be staying at a hotel downtown.", "correta": true },
+            { "texto": "I stay in hotel is downtown.", "correta": false },
+            { "texto": "Downtown hotel I will.", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "Do you have anything to declare?",
+          "opcoes": [
+            { "texto": "No, nothing to declare.", "correta": true },
+            { "texto": "No, I have declare nothing.", "correta": false },
+            { "texto": "Declare no I anything.", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "Everything looks good. Enjoy your trip! How do you respond?",
+          "opcoes": [
+            { "texto": "Thank you very much!", "correta": true },
+            { "texto": "Trip is good thanks.", "correta": false },
+            { "texto": "Enjoy you too now.", "correta": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "titulo": "Na sala de embarque",
+      "cards": [
+        {
+          "tipo": "pergunta",
+          "professor": "You hear: 'Flight 205 is delayed by one hour.' How do you ask a staff member for more info?",
+          "opcoes": [
+            { "texto": "Excuse me, why is the flight delayed?", "correta": true },
+            { "texto": "Flight delay why is?", "correta": false },
+            { "texto": "I want know delay now.", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "Is this seat taken?",
+          "opcoes": [
+            { "texto": "No, go ahead.", "correta": true },
+            { "texto": "No, is taken not.", "correta": false },
+            { "texto": "Seat is empty sit.", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "You need to find a charging outlet. How do you ask someone nearby?",
+          "opcoes": [
+            { "texto": "Do you know where I can charge my phone?", "correta": true },
+            { "texto": "Where charge phone is?", "correta": false },
+            { "texto": "Phone charge I need where.", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "Attention passengers, boarding will begin shortly. What does 'shortly' mean here?",
+          "opcoes": [
+            { "texto": "Soon, in a little while.", "correta": true },
+            { "texto": "A short person.", "correta": false },
+            { "texto": "Right now, immediately.", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "Boarding group 3, please proceed to the gate. If you're group 3, what do you do?",
+          "opcoes": [
+            { "texto": "I walk to the gate.", "correta": true },
+            { "texto": "I wait more here.", "correta": false },
+            { "texto": "I go to check-in again.", "correta": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "titulo": "Embarcando no avião",
+      "cards": [
+        {
+          "tipo": "pergunta",
+          "professor": "Good afternoon! Can I see your boarding pass?",
+          "opcoes": [
+            { "texto": "Of course, here it is.", "correta": true },
+            { "texto": "Boarding pass no have.", "correta": false },
+            { "texto": "Is in my bag somewhere.", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "Your seat is 14A, just down this aisle.",
+          "opcoes": [
+            { "texto": "Thank you, I'll find it.", "correta": true },
+            { "texto": "Thanks I search will.", "correta": false },
+            { "texto": "Aisle I not understand.", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "Excuse me, could you help me put my bag in the overhead bin?",
+          "opcoes": [
+            { "texto": "Sure, no problem.", "correta": true },
+            { "texto": "Problem no is sure.", "correta": false },
+            { "texto": "Bag heavy is sorry.", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "Please fasten your seatbelt, we're about to take off.",
+          "opcoes": [
+            { "texto": "Okay, I'm ready.", "correta": true },
+            { "texto": "Seatbelt no need now.", "correta": false },
+            { "texto": "Take off is when?", "correta": false }
+          ]
+        },
+        {
+          "tipo": "pergunta",
+          "professor": "Would you like something to drink during the flight?",
+          "opcoes": [
+            { "texto": "Yes, water please.", "correta": true },
+            { "texto": "Drink I not want no.", "correta": false },
+            { "texto": "Flight during drink yes.", "correta": false }
+          ]
+        }
+      ]
+    }
+  ]
+}

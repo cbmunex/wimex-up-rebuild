@@ -1,7 +1,7 @@
 // src/pages/Cadastro.jsx
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { signUp } from "@aws-amplify/auth";
+import { createUserAccount } from "../services/authService";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -35,30 +35,12 @@ export default function Cadastro() {
     setLoading(true);
 
     try {
-      await signUp({
-        username: email,
-        password: senha,
-        options: {
-          userAttributes: {
-            email,
-            name: nome,
-          },
-        },
-      });
-
-      setSucesso("Conta criada! Confirme seu e-mail.");
-
-      navigate("/confirmar", {
-        state: { email },
-      });
+      await createUserAccount({ email, password: senha, nome });
+      setSucesso("Conta criada! Você já pode entrar.");
+      setTimeout(() => navigate("/login"), 1500);
     } catch (err) {
       console.error(err);
-
-      if (err.name === "UsernameExistsException") {
-        setErro("Este e-mail já está cadastrado.");
-      } else {
-        setErro("Erro ao criar conta.");
-      }
+      setErro(err.message || "Erro ao criar conta.");
     } finally {
       setLoading(false);
     }

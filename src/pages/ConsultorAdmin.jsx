@@ -1,7 +1,7 @@
 // src/pages/ConsultorAdmin.jsx
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getCurrentUser } from "@aws-amplify/auth";
+import { checkAuth } from "../services/authService";
 
 /*
   Fluxo:
@@ -31,13 +31,12 @@ export default function ConsultorAdmin() {
 
   useEffect(() => {
     async function load() {
-      try {
-        const u = await getCurrentUser();
-        setUser(u);
-      } catch {
+      const { isAuthenticated, user: u } = await checkAuth();
+      if (!isAuthenticated) {
         navigate("/login");
+        return;
       }
-
+      setUser(u);
       setRequests(readRequests());
     }
     load();
@@ -89,7 +88,7 @@ export default function ConsultorAdmin() {
         <header className="flex items-center justify-between mb-6">
           <div>
             <h1 className="text-2xl font-semibold">Painel do Consultor</h1>
-            <p className="text-slate-400 text-sm">Bem-vindo, {user.username ?? user.attributes?.email}</p>
+            <p className="text-slate-400 text-sm">Bem-vindo, {user.nome ?? user.email}</p>
           </div>
 
           <div className="flex items-center gap-3">
